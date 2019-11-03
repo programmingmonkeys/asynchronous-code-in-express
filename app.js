@@ -8,6 +8,16 @@ app.set('view engine', 'pug')
 app.set('views', path.join(__dirname, 'views'))
 app.use(express.static('public'))
 
+function asyncHandler(cb) {
+  return async (req, res, next) => {
+    try {
+      await cb(req, res, next)
+    } catch (err) {
+      res.render('error', { error: err })
+    }
+  }
+}
+
 // CALL BACKS
 // function getUsers(cb) {
 //   fs.readFile('data.json', 'utf8', (err, data) => {
@@ -89,7 +99,6 @@ app.use(express.static('public'))
 //     })
 // })
 
-// ASYNC / AWAIT
 function getUsers() {
   return new Promise((res, rej) => {
     fs.readFile('data.json', 'utf8', (err, data) => {
@@ -103,16 +112,17 @@ function getUsers() {
   })
 }
 
-app.get('/', async (req, res) => {
-  try {
+// ASYNC / AWAIT
+app.get(
+  '/',
+  asyncHandler(async (req, res) => {
     const users = await getUsers()
+    // throw new Error('testing catch')
     res.render('index', {
       title: 'Users',
       users: users.users,
     })
-  } catch (err) {
-    res.render('error', { error: err })
-  }
-})
+  }),
+)
 
 app.listen(3000, () => console.log('App listening on port 3000!'))

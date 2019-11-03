@@ -89,4 +89,30 @@ app.use(express.static('public'))
 //     })
 // })
 
+// ASYNC / AWAIT
+function getUsers() {
+  return new Promise((res, rej) => {
+    fs.readFile('data.json', 'utf8', (err, data) => {
+      if (err) {
+        rej(err)
+      } else {
+        const users = JSON.parse(data)
+        res(users)
+      }
+    })
+  })
+}
+
+app.get('/', async (req, res) => {
+  try {
+    const users = await getUsers()
+    res.render('index', {
+      title: 'Users',
+      users: users.users,
+    })
+  } catch (err) {
+    res.render('error', { error: err })
+  }
+})
+
 app.listen(3000, () => console.log('App listening on port 3000!'))

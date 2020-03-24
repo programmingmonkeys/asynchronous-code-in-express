@@ -13,13 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codingChewie/asynchronous-code-in-express.git"
+    "url": "git+https://github.com/programmingmonkeys/asynchronous-code-in-express.git"
   },
   "author": "codingChewie",
   "bugs": {
-    "url": "https://github.com/codingChewie/asynchronous-code-in-express/issues"
+    "url": "https://github.com/programmingmonkeys/asynchronous-code-in-express/issues"
   },
-  "homepage": "https://github.com/codingChewie/asynchronous-code-in-express#readme",
+  "homepage": "https://github.com/programmingmonkeys/asynchronous-code-in-express#readme",
   "dependencies": {
     "express": "^4.16.4",
     "pug": "^2.0.3"

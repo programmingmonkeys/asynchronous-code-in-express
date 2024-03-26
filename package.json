@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/programmingmonkeys/asynchronous-code-in-express#readme",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.19.2",
     "pug": "^3.0.1"
   },
   "devDependencies": {
